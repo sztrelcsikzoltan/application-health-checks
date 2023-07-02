@@ -17,5 +17,9 @@
 	  <ProjectReference Include="..\InvestmentManager.Core\InvestmentManager.Core.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="NewFolder\" />
+	</ItemGroup>
+
 
 </Project>

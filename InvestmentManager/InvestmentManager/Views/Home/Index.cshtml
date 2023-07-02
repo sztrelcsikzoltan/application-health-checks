@@ -2,7 +2,63 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h1>ASP.NET Core Health Checks Demo App</h1>
+<div class="row">
+    <div class="col-md-7 mt-4">
+        <p>
+            ASP.NET Core provides Health Check Middleware and libraries for reporting the health of your ASP.NET Core based applications.
+        </p>
+        <p>
+            You can include basic health checks functionality to report your application is still alive. Or you can have custom health checks that also detail the health of your application dependencies.
+        </p>
+        <p>
+            You can report the health of your application and its dependencies all from one health endpoint.
+
+            The dependency health information can include anything from the health of your database to other dependencies like downstream API's, queues and messaging systems and file shares.
+        </p>
+        <p>
+            You can report the health of any dependency, either using custom health checks or third-party health check libraries.
+        </p>
+        <p>
+            Best of all, ASP.NET Core Health Checks are a native framework that's designed to be as customizable as possible.
+        </p>
+    </div>
+    <div class="col-md-5 text-right">
+        <img src="~/images/ANCHealthChecks.PNG" height="500" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h3>ASP.NET Core Health Checks Links</h3>
+        <ul>
+            <li><a href="https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-6.0" target="_blank">Microsoft Docs</a> on app health checks</li>
+            <li><a href="https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks" target="_blank">Useful third-party health checks library</a></li>
+            <li><a href="https://github.com/sztrelcsikzoltan/application-health-checks" target="_blank">Github repositary</a> with the project targeting the framework .NET 6.0</li>
+            <li><a href="https://docs.microsoft.com/aspnet/core">Learn about building Web apps</a> with ASP.NET Core</li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <h3>Pluralsight Course</h3>
+        <p>
+            This is the sample application for a Pluralsight course on ASP.NET Core Health Checks, updated to run with the target framework .NET 6.0.
+        </p>
+        <p>
+            You can check the original course at <a href="https://www.pluralsight.com/" target="_blank">Pluralsight</a>.  It is
+            just under an hour long, so it designed for busy people like you.
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h3>About the Author</h3>
+        <p>
+            Rag Dhiman is a Pluralsight Author and a software development consultant with hands-on experience.  I've' worked as a Software Architect/Tech Lead/Senior Developer for over 15 years in many industries.
+        </p>
+        <p>
+            He also got extensive experience in mobile app development and cloud architecture.
+            He is a <a href="https://app.pluralsight.com/profile/author/rag-dhiman" target="_blank">Pluralsight Author</a> and his courses mainly focus on .NET and software architecture.
+        </p>
+        <p>
+            You can follow him on Twitter at <a href="http://twitter.com/RagDhiman" target="_blank">@@RagDhiman</a>
+        </p>
+    </div>
+
 </div>
