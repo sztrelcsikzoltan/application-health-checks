@@ -50,6 +50,10 @@ string stockIndexServiceUrl = builder.Configuration["StockIndexServiceUrl"];
 builder.Services.AddStockIndexServiceHttpClientWithoutProfiler(stockIndexServiceUrl);
 builder.Services.AddInvestmentManagerServices(stockIndexServiceUrl);
 
+// Liveness healh check
+builder.Services.AddHealthChecks();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -67,6 +71,9 @@ app.UseCookiePolicy();
 app.UseRouting();
 
 app.UseAuthorization();
+
+// Configure Liveness health check
+app.UseEndpoints(endpoints => { endpoints.MapHealthChecks("/health"); });
 
 app.MapControllerRoute(
     name: "default",
