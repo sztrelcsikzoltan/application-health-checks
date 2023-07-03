@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvestmentManager.DataAcces
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvestmentManager.Core", "InvestmentManager.Core\InvestmentManager.Core.csproj", "{40BB3176-6239-41DD-B10A-1C1331D246AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvestmentManager", "InvestmentManager\InvestmentManager.csproj", "{15C55A3A-FC3D-4108-9298-C10E6DA63BE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvestmentManager", "InvestmentManager\InvestmentManager.csproj", "{15C55A3A-FC3D-4108-9298-C10E6DA63BE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer", "IdentityServer\IdentityServer.csproj", "{8FC5674F-705B-4B02-B0CB-75CE07237465}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{15C55A3A-FC3D-4108-9298-C10E6DA63BE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15C55A3A-FC3D-4108-9298-C10E6DA63BE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15C55A3A-FC3D-4108-9298-C10E6DA63BE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FC5674F-705B-4B02-B0CB-75CE07237465}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FC5674F-705B-4B02-B0CB-75CE07237465}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FC5674F-705B-4B02-B0CB-75CE07237465}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FC5674F-705B-4B02-B0CB-75CE07237465}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
