@@ -1,5 +1,6 @@
 using InvestmentManager.Core;
 using InvestmentManager.DataAccess.EF;
+using InvestmentManager.HealthChecks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
@@ -79,7 +80,7 @@ builder.Services.AddHealthChecks()
                   return HealthCheckResult.Unhealthy(sqlEx.Message);
               }
           }
-      });
+      }, tags: new[] { "ready" });
 
 // SQL server health check using the package AspNetCore.HealthChecks.SqlServer
 builder.Services.AddHealthChecks()
@@ -132,13 +133,17 @@ app.UseEndpoints(endpoints =>
     // separate health check endpoint for health checks with "ready" tag
     endpoints.MapHealthChecks("/health/ready", new HealthCheckOptions()
     {
-        Predicate = (check) => check.Tags.Contains("ready") == true
+        Predicate = (check) => check.Tags.Contains("ready") == true,
+        ResponseWriter = HealthCheckReadyResponseWriter.WriteHealthCheckReadyResponse,
+        AllowCachingResponses = false
     });
     
     // separate health check endpoint for health checks without "ready" tag
     endpoints.MapHealthChecks("/health/live", new HealthCheckOptions()
     {
-        Predicate = (check) => check.Tags.Contains("ready") == false
+        Predicate = (check) => check.Tags.Contains("ready") == false,
+        ResponseWriter = HealthCheckLiveResponseWriter.WriteHealthCheckLiveResponse,
+        AllowCachingResponses = false
     });
 });
 
