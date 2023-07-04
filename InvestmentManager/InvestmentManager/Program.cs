@@ -84,6 +84,11 @@ builder.Services.AddHealthChecks()
 builder.Services.AddHealthChecks()
     .AddSqlServer(connectionString, name: "SqlServer", failureStatus: HealthStatus.Unhealthy, tags: new[] { "ready" }, timeout: TimeSpan.FromSeconds(1));
 
+// Endpoint health check using the package AspNetCore.HealthChecks.Uris
+builder.Services.AddHealthChecks()
+.AddUrlGroup(new Uri($"{stockIndexServiceUrl}/api/StockIndexes"),
+    "Stock Index API Health Check", HealthStatus.Degraded, tags: new[] { "ready" }, timeout: new TimeSpan(0, 0, 5));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
