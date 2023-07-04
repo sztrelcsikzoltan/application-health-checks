@@ -2,8 +2,10 @@ using InvestmentManager.Core;
 using InvestmentManager.DataAccess.EF;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
@@ -54,6 +56,28 @@ builder.Services.AddInvestmentManagerServices(stockIndexServiceUrl);
 
 // Liveness healh check
 builder.Services.AddHealthChecks();
+
+// Readiness health checks
+
+// Depencency health check of SQL server using AddCheck
+builder.Services.AddHealthChecks()
+      .AddCheck("SQLServer in startup", () =>
+      {
+          using (var connection = new SqlConnection(connectionString))
+          {
+              try
+              {
+                  connection.Open();
+                  using var command = new SqlCommand() { Connection = connection, CommandText = "SELECT 1", CommandTimeout = 1 };
+                  // Console.WriteLine("Health check of SQL connection successful.");
+                  return HealthCheckResult.Healthy();
+              }
+              catch (SqlException sqlEx)
+              {
+                  return HealthCheckResult.Unhealthy(sqlEx.Message);
+              }
+          }
+      });
 
 
 var app = builder.Build();
