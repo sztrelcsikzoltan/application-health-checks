@@ -1,6 +1,7 @@
 using InvestmentManager.Core;
 using InvestmentManager.DataAccess.EF;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
@@ -110,12 +111,23 @@ app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     // CONFIGURE HEALTH CHECKS
-    
+
     // Liveness health check
     endpoints.MapHealthChecks("/health");
 
     // Liveness health check for specific host name(s) and port number(s)
-    endpoints.MapHealthChecks("/health-on-host").RequireHost(hosts: new string[] { "localhost:51500", "localhost:51501" } );
+    endpoints.MapHealthChecks("/health-on-host").RequireHost(hosts: new string[] { "localhost:51500", "localhost:51501" });
+
+    // Health check with customized status code (for Degraded)
+    endpoints.MapHealthChecks("/health-customized-status-code", new HealthCheckOptions()
+    {
+        ResultStatusCodes =
+        {
+            [HealthStatus.Healthy] = StatusCodes.Status200OK,
+            [HealthStatus.Degraded] = StatusCodes.Status500InternalServerError,
+            [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable
+        }
+    });
 });
 
 app.MapControllerRoute(
