@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
 using NLog.Web;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 // NLog 
@@ -79,6 +80,9 @@ builder.Services.AddHealthChecks()
           }
       });
 
+// SQL server health check using the package AspNetCore.HealthChecks.SqlServer
+builder.Services.AddHealthChecks()
+    .AddSqlServer(connectionString, name: "SqlServer", failureStatus: HealthStatus.Unhealthy, tags: new[] { "ready" }, timeout: TimeSpan.FromSeconds(1));
 
 var app = builder.Build();
 
