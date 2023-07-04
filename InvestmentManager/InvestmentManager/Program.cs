@@ -50,6 +50,8 @@ string stockIndexServiceUrl = builder.Configuration["StockIndexServiceUrl"];
 builder.Services.AddStockIndexServiceHttpClientWithoutProfiler(stockIndexServiceUrl);
 builder.Services.AddInvestmentManagerServices(stockIndexServiceUrl);
 
+// HEALTH CHECKS
+
 // Liveness healh check
 builder.Services.AddHealthChecks();
 
@@ -72,8 +74,16 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-// Configure Liveness health check
-app.UseEndpoints(endpoints => { endpoints.MapHealthChecks("/health"); });
+app.UseEndpoints(endpoints =>
+{
+    // CONFIGURE HEALTH CHECKS
+    
+    // Liveness health check
+    endpoints.MapHealthChecks("/health");
+
+    // Liveness health check for specific host name(s) and port number(s)
+    endpoints.MapHealthChecks("/health-on-host").RequireHost(hosts: new string[] { "localhost:51500", "localhost:51501" } );
+});
 
 app.MapControllerRoute(
     name: "default",
