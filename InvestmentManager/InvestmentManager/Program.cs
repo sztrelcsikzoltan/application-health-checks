@@ -128,6 +128,18 @@ app.UseEndpoints(endpoints =>
             [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable
         }
     });
+
+    // separate health check endpoint for health checks with "ready" tag
+    endpoints.MapHealthChecks("/health/ready", new HealthCheckOptions()
+    {
+        Predicate = (check) => check.Tags.Contains("ready") == true
+    });
+    
+    // separate health check endpoint for health checks without "ready" tag
+    endpoints.MapHealthChecks("/health/live", new HealthCheckOptions()
+    {
+        Predicate = (check) => check.Tags.Contains("ready") == false
+    });
 });
 
 app.MapControllerRoute(
