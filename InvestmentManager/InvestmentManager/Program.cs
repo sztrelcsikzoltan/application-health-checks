@@ -97,6 +97,10 @@ builder.Services.AddHealthChecks()
 builder.Services.AddHealthChecks()
     .AddCheck("File Path Health Check class", new FilePathWriteHealthCheck(securityLogFilePath), HealthStatus.Unhealthy, tags: new[] { "ready" });
 
+// File path write health check with an extension method
+builder.Services.AddHealthChecks()
+    .AddFilePathWrite(securityLogFilePath, HealthStatus.Unhealthy, tags: new[] { "ready" });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
