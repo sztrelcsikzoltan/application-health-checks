@@ -13,8 +13,8 @@ namespace InvestmentManager.HealthChecks
 
             var json = new JObject(
                     new JProperty("Overall status", result.Status.ToString()),
-                    new JProperty("totalChecksDuration", result.TotalDuration.TotalSeconds.ToString("0:0.000000"))
-                );
+                    new JProperty("TotalChecksDuration", result.TotalDuration.TotalSeconds.ToString("0:0.000000"))
+            );
             return httpContext.Response.WriteAsync(json.ToString(Newtonsoft.Json.Formatting.Indented));
         }
     }

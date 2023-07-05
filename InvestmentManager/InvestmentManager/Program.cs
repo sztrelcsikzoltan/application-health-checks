@@ -55,6 +55,8 @@ string stockIndexServiceUrl = builder.Configuration["StockIndexServiceUrl"];
 builder.Services.AddStockIndexServiceHttpClientWithoutProfiler(stockIndexServiceUrl);
 builder.Services.AddInvestmentManagerServices(stockIndexServiceUrl);
 
+var securityLogFilePath = builder.Configuration["securityLogFilePath"];
+
 // HEALTH CHECKS
 
 // Liveness healh check
@@ -90,6 +92,10 @@ builder.Services.AddHealthChecks()
 builder.Services.AddHealthChecks()
 .AddUrlGroup(new Uri($"{stockIndexServiceUrl}/api/StockIndexes"),
     "Stock Index API Health Check", HealthStatus.Degraded, tags: new[] { "ready" }, timeout: new TimeSpan(0, 0, 5));
+
+// File path write health check with a class instance
+builder.Services.AddHealthChecks()
+    .AddCheck("File Path Health Check class", new FilePathWriteHealthCheck(securityLogFilePath), HealthStatus.Unhealthy, tags: new[] { "ready" });
 
 var app = builder.Build();
 
