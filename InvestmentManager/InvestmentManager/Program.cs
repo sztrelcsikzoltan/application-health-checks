@@ -173,6 +173,8 @@ app.UseEndpoints(endpoints =>
     });
 
     endpoints.MapControllers();
+    // Add endpoint health checks defined in extension method
+    endpoints.MapEndpointHealthChecks();
 });
 
 app.MapControllerRoute(
