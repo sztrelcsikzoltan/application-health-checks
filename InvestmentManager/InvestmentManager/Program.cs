@@ -171,6 +171,8 @@ app.UseEndpoints(endpoints =>
         ResponseWriter = HealthCheckLiveResponseWriter.WriteHealthCheckLiveResponse,
         AllowCachingResponses = false
     });
+
+    endpoints.MapControllers();
 });
 
 app.MapControllerRoute(
