@@ -101,6 +101,22 @@ builder.Services.AddHealthChecks()
 builder.Services.AddHealthChecks()
     .AddFilePathWrite(securityLogFilePath, HealthStatus.Unhealthy, tags: new[] { "ready" });
 
+// Add HealthCheckPolicy as authorization policy
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("HealthCheckPolicy", policy =>
+        policy.RequireClaim("client_policy", "healthChecks"));
+});
+
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer("Bearer", options =>
+    {
+        options.Authority = "http://localhost:50337";
+        options.RequireHttpsMetadata = false;
+        options.Audience = "InvestmentManagerAPI";
+    });
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -116,7 +132,7 @@ app.UseStaticFiles();
 app.UseCookiePolicy();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
@@ -140,13 +156,13 @@ app.UseEndpoints(endpoints =>
         }
     });
 
-    // separate health check endpoint for health checks with "ready" tag
+    // separate health check endpoint for health checks with "ready" tag, with authorization policy
     endpoints.MapHealthChecks("/health/ready", new HealthCheckOptions()
     {
         Predicate = (check) => check.Tags.Contains("ready") == true,
         ResponseWriter = HealthCheckReadyResponseWriter.WriteHealthCheckReadyResponse,
         AllowCachingResponses = false
-    });
+    }).RequireAuthorization("HealthCheckPolicy"); ;
     
     // separate health check endpoint for health checks without "ready" tag
     endpoints.MapHealthChecks("/health/live", new HealthCheckOptions()

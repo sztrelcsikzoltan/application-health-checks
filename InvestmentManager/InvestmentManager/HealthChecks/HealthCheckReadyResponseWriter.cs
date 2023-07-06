@@ -13,9 +13,9 @@ namespace InvestmentManager.HealthChecks
             httpContext.Response.ContentType = "application/json";
 
             var json = new JObject(
-                    new JProperty("Overall status", result.Status.ToString()),
+                    new JProperty("OverallStatus", result.Status.ToString()),
                     new JProperty("TotalChecksDuration", result.TotalDuration.TotalSeconds.ToString("0:0.000000")),
-                    new JProperty("DependencyHealthChecks", new JObject(result.Entries.Select(dicItem =>
+                    new JProperty("HealthChecks", new JObject(result.Entries.Select(dicItem =>
                         new JProperty(dicItem.Key, new JObject(
                             new JProperty("Status", dicItem.Value.Status.ToString()),
                             new JProperty("Duration", dicItem.Value.Duration.TotalSeconds.ToString("0:0.000000")),
