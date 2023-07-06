@@ -135,6 +135,7 @@ app.UseStaticFiles();
 app.UseCookiePolicy();
 
 app.UseRouting();
+app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -173,7 +174,12 @@ app.UseEndpoints(endpoints =>
         Predicate = (check) => check.Tags.Contains("ready") == false,
         ResponseWriter = HealthCheckLiveResponseWriter.WriteHealthCheckLiveResponse,
         AllowCachingResponses = false
-    });
+    })
+        // Add CORS policy to the endpoint
+        .RequireCors(builder =>
+         {
+             builder.WithOrigins("http://example.com", "http://exampleTwo.com");
+         });
 
     endpoints.MapControllers();
     // Add endpoint health checks defined in extension method
