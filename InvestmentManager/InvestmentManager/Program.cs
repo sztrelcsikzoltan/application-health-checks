@@ -68,25 +68,28 @@ builder.Services.AddHealthChecks();
 builder.Services.AddHealthChecks()
       .AddCheck("SQLServer in startup", () =>
       {
-          using (var connection = new SqlConnection(connectionString))
+          using var connection = new SqlConnection(connectionString);
+          try
           {
-              try
-              {
-                  connection.Open();
-                  using var command = new SqlCommand() { Connection = connection, CommandText = "SELECT 1", CommandTimeout = 1 };
-                  // Console.WriteLine("Health check of SQL connection successful.");
-                  return HealthCheckResult.Healthy();
-              }
-              catch (SqlException sqlEx)
-              {
-                  return HealthCheckResult.Unhealthy(sqlEx.Message);
-              }
+              connection.Open();
+              using var command = new SqlCommand() { Connection = connection, CommandText = "SELECT 1", CommandTimeout = 1 };
+              // Console.WriteLine("Health check of SQL connection successful.");
+              return HealthCheckResult.Healthy();
+          }
+          catch (SqlException sqlEx)
+          {
+              return HealthCheckResult.Unhealthy(sqlEx.Message);
           }
       }, tags: new[] { "ready" });
 
 // SQL server health check using the package AspNetCore.HealthChecks.SqlServer
 builder.Services.AddHealthChecks()
     .AddSqlServer(connectionString, name: "SqlServer", failureStatus: HealthStatus.Unhealthy, tags: new[] { "ready" }, timeout: TimeSpan.FromSeconds(1));
+
+// SQL server health checks defined in extension method
+builder.Services.AddHealthChecks()
+    .AddSqlServerCheckThroughSqlCommand("SqlServerSqlCommand", tags: new[] { "ready" })
+    .AddSqlServerCheckThroughDbContext("SqlServerDbContext", tags: new[] { "ready" });
 
 // Endpoint health check using the package AspNetCore.HealthChecks.Uris
 builder.Services.AddHealthChecks()
@@ -156,15 +159,15 @@ app.UseEndpoints(endpoints =>
         }
     });
 
-    // separate health check endpoint for health checks with "ready" tag, with authorization policy
+    // Separate health check endpoint for health checks with "ready" tag, with authorization policy
     endpoints.MapHealthChecks("/health/ready", new HealthCheckOptions()
     {
         Predicate = (check) => check.Tags.Contains("ready") == true,
         ResponseWriter = HealthCheckReadyResponseWriter.WriteHealthCheckReadyResponse,
         AllowCachingResponses = false
-    }).RequireAuthorization("HealthCheckPolicy"); ;
+    }).RequireAuthorization("HealthCheckPolicy");
     
-    // separate health check endpoint for health checks without "ready" tag
+    // Separate health check endpoint for health checks without "ready" tag
     endpoints.MapHealthChecks("/health/live", new HealthCheckOptions()
     {
         Predicate = (check) => check.Tags.Contains("ready") == false,
