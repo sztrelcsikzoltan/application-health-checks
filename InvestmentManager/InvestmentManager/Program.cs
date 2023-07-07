@@ -1,7 +1,9 @@
+using AspNetCoreRateLimit;
 using HealthChecks.UI.Client;
 using InvestmentManager.Core;
 using InvestmentManager.DataAccess.EF;
 using InvestmentManager.HealthChecks;
+using InvestmentManager.RateLimit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
@@ -126,6 +128,12 @@ builder.Services.AddHealthChecksUI(options =>
     options.AddHealthCheckEndpoint(" HC UI endpoint", "https://localhost:51500/healthui");
 }).AddInMemoryStorage();
 
+// Add and configure services required for AspNetCoreRateLimit
+RateLimit.ConfigureServices(builder.Services, builder.Configuration);
+// This is required to set the default value for AspNetCoreRateLimit.IProcessingStrategy
+builder.Services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -144,6 +152,7 @@ app.UseRouting();
 app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseIpRateLimiting();
 
 app.UseEndpoints(endpoints =>
 {
