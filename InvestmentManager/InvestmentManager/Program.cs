@@ -2,7 +2,9 @@ using AspNetCoreRateLimit;
 using HealthChecks.UI.Client;
 using InvestmentManager.Core;
 using InvestmentManager.DataAccess.EF;
+using InvestmentManager.Health_Check_Publishers;
 using InvestmentManager.HealthChecks;
+using InvestmentManager.QueueMessage;
 using InvestmentManager.RateLimit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -133,8 +135,19 @@ RateLimit.ConfigureServices(builder.Services, builder.Configuration);
 // This is required to set the default value for AspNetCoreRateLimit.IProcessingStrategy
 builder.Services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
 
+builder.Services.Configure<HealthCheckPublisherOptions>(options =>
+{
+    options.Delay = TimeSpan.FromSeconds(5);
+    options.Period = TimeSpan.FromSeconds(10);
+    options.Predicate = (check) => check.Tags.Contains("ready");
+    options.Timeout = TimeSpan.FromSeconds(20);
+});
+
+builder.Services.AddSingleton<IHealthCheckPublisher, HealthCheckQueuePublisher>();
+builder.Services.AddTransient<IQueueMessage, RabbitMQQueueMessage>();
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
