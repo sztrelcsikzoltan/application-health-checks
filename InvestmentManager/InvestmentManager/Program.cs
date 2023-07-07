@@ -1,3 +1,4 @@
+using HealthChecks.UI.Client;
 using InvestmentManager.Core;
 using InvestmentManager.DataAccess.EF;
 using InvestmentManager.HealthChecks;
@@ -119,6 +120,11 @@ builder.Services.AddAuthentication("Bearer")
         options.Audience = "InvestmentManagerAPI";
     });
 
+// Add Health Checks UI with in-memory storage
+builder.Services.AddHealthChecksUI(options =>
+{
+    options.AddHealthCheckEndpoint(" HC UI endpoint", "https://localhost:51500/healthui");
+}).AddInMemoryStorage();
 
 var app = builder.Build();
 
@@ -184,10 +190,25 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllers();
     // Add endpoint health checks defined in extension method
     endpoints.MapEndpointHealthChecks();
-});
 
-app.MapControllerRoute(
+    // Add endpoint for health check UI
+    endpoints.MapHealthChecks("/healthui", new HealthCheckOptions()
+    {
+        Predicate = _ => true,
+        ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+    });
+
+    endpoints.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+});
+
+// Configure HealthCheckUI endpoints
+app.UseHealthChecksUI(options =>
+{
+    options.UIPath = "/healthchecks-ui";
+    options.ApiPath = "/health-ui-api";
+});
+
 
 app.Run();
