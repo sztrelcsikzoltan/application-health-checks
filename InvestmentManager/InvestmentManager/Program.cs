@@ -128,8 +128,11 @@ builder.Services.AddAuthentication("Bearer")
 builder.Services.AddHealthChecksUI(options =>
 {
     options.AddHealthCheckEndpoint(" HC UI endpoint", "https://localhost:51500/healthui");
-}).AddInMemoryStorage();
-
+})
+    .AddInMemoryStorage()
+    // Add Health Checks UI with db storage - works only if AddInMemoryStorage is not added
+    .AddSqlServerStorage(builder.Configuration.GetConnectionString("HealthChecks"));
+    
 // Add and configure services required for AspNetCoreRateLimit
 RateLimit.ConfigureServices(builder.Services, builder.Configuration);
 // This is required to set the default value for AspNetCoreRateLimit.IProcessingStrategy
