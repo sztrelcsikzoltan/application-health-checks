@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "InvestmentManager.DataAccess.EF": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:24170;http://localhost:24171"
+    }
+  }
+}
