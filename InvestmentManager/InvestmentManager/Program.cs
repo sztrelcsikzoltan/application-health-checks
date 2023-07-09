@@ -1,9 +1,9 @@
+global using InvestmentManager.HealthChecks;
 using AspNetCoreRateLimit;
 using HealthChecks.UI.Client;
 using InvestmentManager.Core;
 using InvestmentManager.DataAccess.EF;
 using InvestmentManager.Health_Check_Publishers;
-using InvestmentManager.HealthChecks;
 using InvestmentManager.QueueMessage;
 using InvestmentManager.RateLimit;
 using Microsoft.AspNetCore.Builder;
@@ -41,8 +41,6 @@ builder.Services.AddLogging(loggingBuilder =>
     loggingBuilder.AddDebug();
     loggingBuilder.AddNLog();
 });
-
-builder.Services.AddControllersWithViews();
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
@@ -212,7 +210,6 @@ app.UseEndpoints(endpoints =>
              builder.WithOrigins("http://example.com", "http://exampleTwo.com");
          });
 
-    endpoints.MapControllers();
     // Add endpoint health checks defined in extension method
     endpoints.MapEndpointHealthChecks();
 
@@ -234,6 +231,5 @@ app.UseHealthChecksUI(options =>
     options.UIPath = "/healthchecks-ui";
     options.ApiPath = "/health-ui-api";
 });
-
 
 app.Run();

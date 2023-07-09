@@ -22,8 +22,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\DataAccess.EF\InvestmentManager.DataAccess.EF.csproj" />
 	  <ProjectReference Include="..\InvestmentManager.Core\InvestmentManager.Core.csproj" />
+	  <ProjectReference Include="..\InvestmentManager.DataAccess.EF\InvestmentManager.DataAccess.EF.csproj" />
+		<AssemblyAttribute Include="BuildDateAttribute">
+			<_Parameter1>$([System.DateTime]::UtcNow.ToString("yyyyMMddHHmmss"))</_Parameter1>
+		</AssemblyAttribute>
 	</ItemGroup>
 
 	<ItemGroup>

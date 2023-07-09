@@ -92,7 +92,7 @@ namespace InvestmentManager.Controllers
         /// </summary>
         /// <returns>The version result.</returns>
         [HttpGet]
-        [Route("~/health/version")]
+        [Route("~/health/assembly")]
       
         public IActionResult ProductVersion()
         {
@@ -102,7 +102,8 @@ namespace InvestmentManager.Controllers
             {
                 Application = entryAssembly!.GetName().Name,
                 Host = Environment.MachineName,
-                Date = DateTime.UtcNow.ToString("u"),
+                QueryDate = DateTime.UtcNow.ToString("u"),
+                BuildDate = InvestmentManager.HealthChecks.BuildDateInfo.GetBuildDate(Assembly.GetExecutingAssembly()).ToString("u"),
                 ProductVersion = FileVersionInfo.GetVersionInfo(entryAssembly.Location).ProductVersion,
                 AssemblyVersion = entryAssembly.GetName().Version
             };

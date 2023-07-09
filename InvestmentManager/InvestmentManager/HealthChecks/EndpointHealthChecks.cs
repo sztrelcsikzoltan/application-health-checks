@@ -60,7 +60,7 @@ namespace InvestmentManager.HealthChecks
 
             endpoints.Map("/health/ping", context => { return Task.CompletedTask; });
 
-            endpoints.Map(pattern: "/health/version", requestDelegate: async context =>
+            endpoints.Map(pattern: "/health/assembly", requestDelegate: async context =>
             {
                 var entryAssembly = Assembly.GetEntryAssembly();
                 
@@ -68,7 +68,8 @@ namespace InvestmentManager.HealthChecks
                 {
                     Application = entryAssembly!.GetName().Name,
                     Host = Environment.MachineName,
-                    Date = DateTime.UtcNow.ToString("u"),
+                    QueryDate = DateTime.UtcNow.ToString("u"),
+                    BuildDate = InvestmentManager.HealthChecks.BuildDateInfo.GetBuildDate(Assembly.GetExecutingAssembly()).ToString("u"),
                     ProductVersion = FileVersionInfo.GetVersionInfo(entryAssembly.Location).ProductVersion,
                     AssemblyVersion = entryAssembly.GetName().Version
                 };

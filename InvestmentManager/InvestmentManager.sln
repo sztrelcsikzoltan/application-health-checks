@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockIndexWebService", "Sto
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InvestmentManager", "InvestmentManager", "{6108221F-AC4C-4838-BA9F-AC8FB5FE0F89}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvestmentManager.DataAccess.EF", "DataAccess.EF\InvestmentManager.DataAccess.EF.csproj", "{CC3D603D-5294-49F7-8AE3-1FDF58AB85C4}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvestmentManager.Core", "InvestmentManager.Core\InvestmentManager.Core.csproj", "{40BB3176-6239-41DD-B10A-1C1331D246AB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvestmentManager", "InvestmentManager\InvestmentManager.csproj", "{15C55A3A-FC3D-4108-9298-C10E6DA63BE7}"
@@ -18,6 +16,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityServer\IdentityServer.csproj", "{8FC5674F-705B-4B02-B0CB-75CE07237465}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthCheckAlerter", "HealthCheckAlerter\HealthCheckAlerter.csproj", "{E0ECE73F-7F94-41E0-8BE9-0EEE9CAF5ED0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvestmentManager.DataAccess.EF", "InvestmentManager.DataAccess.EF\InvestmentManager.DataAccess.EF.csproj", "{C7D0ECCE-2115-4F9A-90C5-285FFF110EEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,6 @@ Global
 		{DABE420D-4FC9-438C-BD4E-E86ADDED5CC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DABE420D-4FC9-438C-BD4E-E86ADDED5CC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DABE420D-4FC9-438C-BD4E-E86ADDED5CC1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC3D603D-5294-49F7-8AE3-1FDF58AB85C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC3D603D-5294-49F7-8AE3-1FDF58AB85C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC3D603D-5294-49F7-8AE3-1FDF58AB85C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC3D603D-5294-49F7-8AE3-1FDF58AB85C4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{40BB3176-6239-41DD-B10A-1C1331D246AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{40BB3176-6239-41DD-B10A-1C1331D246AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40BB3176-6239-41DD-B10A-1C1331D246AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,15 +45,19 @@ Global
 		{E0ECE73F-7F94-41E0-8BE9-0EEE9CAF5ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0ECE73F-7F94-41E0-8BE9-0EEE9CAF5ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0ECE73F-7F94-41E0-8BE9-0EEE9CAF5ED0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7D0ECCE-2115-4F9A-90C5-285FFF110EEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7D0ECCE-2115-4F9A-90C5-285FFF110EEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7D0ECCE-2115-4F9A-90C5-285FFF110EEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7D0ECCE-2115-4F9A-90C5-285FFF110EEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{DABE420D-4FC9-438C-BD4E-E86ADDED5CC1} = {5041D7EF-ABA0-401F-9696-A2668FDD0A3E}
-		{CC3D603D-5294-49F7-8AE3-1FDF58AB85C4} = {6108221F-AC4C-4838-BA9F-AC8FB5FE0F89}
 		{40BB3176-6239-41DD-B10A-1C1331D246AB} = {6108221F-AC4C-4838-BA9F-AC8FB5FE0F89}
 		{15C55A3A-FC3D-4108-9298-C10E6DA63BE7} = {6108221F-AC4C-4838-BA9F-AC8FB5FE0F89}
+		{C7D0ECCE-2115-4F9A-90C5-285FFF110EEE} = {6108221F-AC4C-4838-BA9F-AC8FB5FE0F89}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F1131AA1-F5DF-418A-BC44-326831E1D702}
