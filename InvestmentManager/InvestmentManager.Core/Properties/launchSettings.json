@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "InvestmentManager.Core": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:24168;http://localhost:24169"
+    }
+  }
+}
