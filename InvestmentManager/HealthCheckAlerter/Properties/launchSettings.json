@@ -1,0 +1,11 @@
+﻿{
+  "profiles": {
+    "HealthCheckAlerter": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:4635;http://localhost:4636"
+    }
+  }
+}

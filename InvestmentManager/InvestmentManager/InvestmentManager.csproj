@@ -7,14 +7,26 @@
   </PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="6.0.2" />
+		<PackageReference Include="AspNetCore.HealthChecks.Uris" Version="6.0.3" />
+		<PackageReference Include="AspNetCore.HealthChecks.UI" Version="6.0.5" />
+		<PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="6.0.5" />
+		<PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="6.0.5" />
+		<PackageReference Include="AspNetCore.HealthChecks.UI.SqlServer.Storage" Version="6.0.5" />
+		<PackageReference Include="AspNetCoreRateLimit" Version="5.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.15" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.18" />
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
 		<PackageReference Include="NLog.Web.AspNetCore" Version="5.2.3" />
+		<PackageReference Include="RabbitMQ.Client" Version="5.1.1" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\DataAccess.EF\InvestmentManager.DataAccess.EF.csproj" />
 	  <ProjectReference Include="..\InvestmentManager.Core\InvestmentManager.Core.csproj" />
+	  <ProjectReference Include="..\InvestmentManager.DataAccess.EF\InvestmentManager.DataAccess.EF.csproj" />
+		<AssemblyAttribute Include="BuildDateAttribute">
+			<_Parameter1>$([System.DateTime]::UtcNow.ToString("yyyyMMddHHmmss"))</_Parameter1>
+		</AssemblyAttribute>
 	</ItemGroup>
 
 	<ItemGroup>
