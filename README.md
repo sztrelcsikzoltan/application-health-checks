@@ -96,9 +96,8 @@ Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/bed27
 Create separate endpoints for differently tagged health checks
 - /health/ready endpoint for health checks with "ready" tag
 - /health/live endpoint for health checks without "ready" tag
-10 create health check endpoints with and without ready tag.png
 <p align="left">
-  <img src="documentation/10 create health check endpoints with and without ready tag.png" alt="Create health check endpoints with and without ready tag" title="Create health check endpoints with and without ready tag" />
+  <img src="documentation/10 create health check end points with and without ready tag.png" alt="Create health check endpoints with and without ready tag" title="Create health check endpoints with and without ready tag" />
 </p>
 
 Create separate endpoints for differently tagged health checks:
@@ -119,7 +118,7 @@ Customize the content and format of health check responses:
   <img src="documentation/11a customize content of health-ready endpoint - code.png" alt="Customize content of /health/ready endpoint - code" title="Customize content of /health/ready endpoint - code" />
 </p>
 <p align="left">
-  <img src="documentation/11b customize content of health-ready endpoint.png" alt="Customize content of /health/ready endpoint - response" title="Customize content of /health/ready endpoint - response" />
+  <img src="documentation/11b customize content of health-ready endpoint - code.png.png" alt="Customize content of /health/ready endpoint - response" title="Customize content of /health/ready endpoint - response" />
 </p>
 Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/18a884e1f09f4dc5d2565724bd1d61e878d1a59d
 
@@ -193,7 +192,7 @@ Add endpoint health checks as Controller action methods
   <img src="documentation/15c property values of the HealthReport class.png" alt="Property values of the HealthReport class" title="Property values of the HealthReport class" />
 </p>
 
-- as a result each child objects appears in a new line indented:
+- as a result each child object appears in a new line indented:
 <p align="left">
   <img src="documentation/15d final results of health-controller endpoint.png" alt="Final results of /health/controller endpoint" title="Final results of /health/controller endpoint" />
 </p>
@@ -208,7 +207,7 @@ Add endpoint health checks as Controller action methods
   <img src="documentation/15f final results with Failure status.png" alt="Final results with Failure status" title="Final results with Failure status" />
 </p>
 
-- the /healthcheck endpoint redirects to the ./health/controller endpoint
+- the /healthcheck endpoint redirects to the ./health/controller endpoint:
 <p align="left">
   <img src="documentation/15g healthcheck endpoint redirects to health-controller endpoint.png" alt="The /healthcheck endpoint redirects to ./health/controller endpoint" title="The /healthcheck endpoint redirects to ./health/controller endpoint" />
 </p>
@@ -218,7 +217,7 @@ Add endpoint health checks as Controller action methods
   <img src="documentation/15h health-ping endpoint.png" alt="The /health/ping endpoint returns status code 200" title="The /health/ping endpoint returns status code 200" />
 </p>
 
-- the /health/assembly endpoint returns assembly-related information, such as Application name, BuildDate, ProductVerson, AssembyVersion
+- the /health/assembly endpoint returns assembly-related information, such as Application name, BuildDate, ProductVersion, AssembyVersion:
 <p align="left">
   <img src="documentation/15i health-assembly endpoint - code.png" alt="The /health/assembly endpoint - code" title="The /health/assembly endpoint - code" />
 </p>
@@ -292,8 +291,11 @@ In the InvestmentManager project,
   <img src="documentation/19a add packages for health check user interface.png" alt="Add packages for health check user interface" title="Add packages for health check user interface" />
 </p>
 Configure HealthChecksUI as a service in Program.cs:
-- add HealthChecksUI as a service with in-memory storage:
-- add health check endoint /healthui for HealthChecksUI:
+
+- add HealthChecksUI as a service with in-memory storage
+
+- add health check endoint /healthui for HealthChecksUI
+
 - configure HealthChecksUI in appsettings.json
 <p align="left">
   <img src="documentation/19b add HealthChecksUI with in memory storage.png" alt="Add HealthChecksUI with in memory storage" title="Add HealthChecksUI with in memory storage" />
