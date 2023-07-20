@@ -6,6 +6,7 @@ using InvestmentManager.DataAccess.EF;
 using InvestmentManager.Health_Check_Publishers;
 using InvestmentManager.QueueMessage;
 using InvestmentManager.RateLimit;
+using InvestmentManager.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
@@ -94,6 +95,9 @@ builder.Services.AddHealthChecks()
     .AddSqlServerCheckThroughSqlCommand("SqlServerSqlCommand", tags: new[] { "ready" })
     .AddSqlServerCheckThroughDbContext("SqlServerDbContext", tags: new[] { "ready" });
 
+//Add service file
+builder.Services.AddTransient<CheckHealthService>();
+
 // Endpoint health check using the package AspNetCore.HealthChecks.Uris
 builder.Services.AddHealthChecks()
 .AddUrlGroup(new Uri($"{stockIndexServiceUrl}/api/StockIndexes"),
@@ -125,7 +129,7 @@ builder.Services.AddAuthentication("Bearer")
 // Add Health Checks UI with in-memory storage
 builder.Services.AddHealthChecksUI(options =>
 {
-    options.AddHealthCheckEndpoint(" HC UI endpoint", "https://localhost:51500/healthui");
+    options.AddHealthCheckEndpoint("HC UI endpoint", "https://localhost:51500/healthui");
 })
     .AddInMemoryStorage()
     // Add Health Checks UI with db storage - works only if AddInMemoryStorage is not added
