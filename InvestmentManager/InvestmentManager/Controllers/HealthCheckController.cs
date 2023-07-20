@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using InvestmentManager.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -15,12 +16,14 @@ namespace InvestmentManager.Controllers
     [ApiController]
     [AllowAnonymous]
     public class HealthCheckController : ControllerBase
-    {
+    { 
         private readonly HealthCheckService _healthCheckService;
+        private readonly CheckHealthService _checkHealthService;
 
-        public HealthCheckController(HealthCheckService healthCheckService)
+        public HealthCheckController(HealthCheckService healthCheckService, CheckHealthService checkHealthService)
         {
             _healthCheckService = healthCheckService ?? throw new ArgumentNullException(nameof(healthCheckService));
+            _checkHealthService = checkHealthService ?? throw new ArgumentNullException(nameof(checkHealthService));
         }
 
         /// <summary>
@@ -32,36 +35,7 @@ namespace InvestmentManager.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> CheckHealth()
         {
-            string CustomHealthStatus(HealthStatus healthStatus)
-            {
-                switch (healthStatus)
-                {
-                    case HealthStatus.Healthy: return "Success".ToString();
-                    case HealthStatus.Unhealthy: return "Failure".ToString();
-                    case HealthStatus.Degraded: return "Degraded".ToString();
-                    default: return healthStatus.ToString();
-                }
-            };
-
-            object MapHealthResponse(HealthReport r) => new
-            {
-                OverallStatus = CustomHealthStatus(r.Status),
-                TotalChecksDuration = r.TotalDuration.TotalMilliseconds,
-                HealthChecks = r.Entries.Select(e => new
-                {
-                    Name = e.Key,
-                    Status = CustomHealthStatus(e.Value.Status),
-                    Duration = e.Value.Duration.TotalMilliseconds,
-                    Description = e.Value.Description!,
-                    Exception = e.Value.Exception?.Message.ToString(),
-                    Data = e.Value.Data.Select(dicData => new object[] { dicData.Key, dicData.Value })
-                })
-            };
-
-            object healthcheckResult = MapHealthResponse(await _healthCheckService.CheckHealthAsync());
-            healthcheckResult = healthcheckResult.ToJToken().ToString(Newtonsoft.Json.Formatting.Indented);
-
-            return Ok(healthcheckResult);
+            return await _checkHealthService.CheckHealth();
         }
 
         /// <summary>
@@ -71,7 +45,7 @@ namespace InvestmentManager.Controllers
         [HttpGet]
         [Route("~/healthcheck")]
         [ProducesResponseType(StatusCodes.Status302Found)]
-        public IActionResult Check()
+        public IActionResult Redirect()
         {
             return Redirect("./health/controller");
         }
@@ -94,21 +68,9 @@ namespace InvestmentManager.Controllers
         [HttpGet]
         [Route("~/health/assembly")]
       
-        public IActionResult ProductVersion()
+        public IActionResult VersionInfo()
         {
-            var entryAssembly = Assembly.GetEntryAssembly();
-
-            object versionInfo = new
-            {
-                Application = entryAssembly!.GetName().Name,
-                Host = Environment.MachineName,
-                QueryDate = DateTime.UtcNow.ToString("u"),
-                BuildDate = InvestmentManager.HealthChecks.BuildDateInfo.GetBuildDate(Assembly.GetExecutingAssembly()).ToString("u"),
-                ProductVersion = FileVersionInfo.GetVersionInfo(entryAssembly.Location).ProductVersion,
-                AssemblyVersion = entryAssembly.GetName().Version
-            };
-
-            return Ok(versionInfo.ToJToken().ToString(Newtonsoft.Json.Formatting.Indented));
+            return _checkHealthService.VersionInfo();
         }
 
     }
