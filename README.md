@@ -27,7 +27,7 @@ The solution contains 4 applications:
 
 #### Liveness health checks
 
-Liveness health check using the MapHealthChecks extension method (framework: Microsoft.AspNetCore.App, assembly: Microsoft.Extensions.Diagnostics.HealthChecks)
+:arrow_right: Liveness health check using the MapHealthChecks extension method (framework: Microsoft.AspNetCore.App, assembly: Microsoft.Extensions.Diagnostics.HealthChecks)
 Endpoint: /health
 <p align="left">
   <img src="documentation/04a liveness health check - code.png" alt="Liveness health check - code" title="Liveness health check - code" />
@@ -39,7 +39,7 @@ Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/8cc5d
 
 &nbsp;  
 &nbsp;  
-Liveness health check for specific host name(s) and port number(s), using RequireHost extension method (framework: Microsoft.AspNetCore.App, assembly: Microsoft.AspNetCore.Routing)	
+:arrow_right: Liveness health check for specific host name(s) and port number(s), using RequireHost extension method (framework: Microsoft.AspNetCore.App, assembly: Microsoft.AspNetCore.Routing)	
 Endpoint: /health-on-host
 <p align="left">
   <img src="documentation/05a liveness health check for specific host and port - code.png" alt="Liveness health check for specific host and port - code" title="Liveness health check for specific host and port - code" />
@@ -53,7 +53,7 @@ Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/05571
 &nbsp;  
 #### Readiness health checks
 
-Dependency health check of SQL server using the AddCheck extension method (framework: Microsoft.AspNetCore.App, assembly: Microsoft.Extensions.Diagnostics.HealthChecks)	
+:arrow_right: Dependency health check of SQL server using the AddCheck extension method (framework: Microsoft.AspNetCore.App, assembly: Microsoft.Extensions.Diagnostics.HealthChecks)	
 Health check name: "SQLServer in startup" 
 <p align="left">
   <img src="documentation/06 SQL server health check in startup.png" alt="SQL server health check in startup" title="SQL server health check in startup" />
@@ -62,7 +62,7 @@ Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/fcd93
 
 &nbsp;  
 &nbsp;  
-Add SQL server health check using the AddSqlServer extension method (NuGet package: AspNetCore.HealthChecks.SqlServer, assembly: HealthChecks.SqlServer)
+:arrow_right: Add SQL server health check using the AddSqlServer extension method (NuGet package: AspNetCore.HealthChecks.SqlServer, assembly: HealthChecks.SqlServer)
 Health check name: "SqlServer"
 <p align="left">
   <img src="documentation/07 SqlServer health check with SqlServer package.png" alt="Add SqlServer health check with SqlServer package" title="Add SqlServer health check with SqlServer package" />
@@ -71,7 +71,7 @@ Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/af69c
 
 &nbsp;  
 &nbsp;  
-Add endpoint health check, using the AddUrlGroup extension method (NuGet package AspNetCore.HealthChecks.Uris, assembly: HealthChecks.Uris)
+:arrow_right: Add endpoint health check, using the AddUrlGroup extension method (NuGet package AspNetCore.HealthChecks.Uris, assembly: HealthChecks.Uris)
 Health check name: "Stock Index API Health Check"
 <p align="left">
   <img src="documentation/08 endpoint health check with Uris package.png" alt="Add endpoint health check with Uris package" title="Add endpoint health check with Uris package" />
@@ -80,7 +80,7 @@ Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/29ec8
 
 &nbsp;  
 &nbsp;  
-Health check with customized status codes, using the property ResultStatusCodes of type IDictionary <HealthStatus, int> (framework Microsoft.AspNetCore.App, assembly: Microsoft. AspNetCore.Diagnostics.HealthChecks)
+:arrow_right: Health check with customized status codes, using the property ResultStatusCodes of type IDictionary <HealthStatus, int> (framework Microsoft.AspNetCore.App, assembly: Microsoft. AspNetCore.Diagnostics.HealthChecks)
 - for Degraded healtch status it changes the status code to 500, instead of default 200
 Endpoint: /health-customized-status-code
 <p align="left">
@@ -93,14 +93,14 @@ Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/bed27
 
 &nbsp;  
 &nbsp;  
-Create separate endpoints for differently tagged health checks
+:arrow_right: Create separate endpoints for differently tagged health checks
 - /health/ready endpoint for health checks with "ready" tag
 - /health/live endpoint for health checks without "ready" tag
 <p align="left">
-  <img src="documentation/10 create health check end points with and without ready tag.png" alt="Create health check endpoints with and without ready tag" title="Create health check endpoints with and without ready tag" />
+  <img src="documentation/10 create health check endpoints with and without ready tag.png" alt="Create health check endpoints with and without ready tag" title="Create health check endpoints with and without ready tag" />
 </p>
 
-Create separate endpoints for differently tagged health checks:
+:arrow_right: Create separate endpoints for differently tagged health checks:
 - /health/live endpoint:
 <p align="left">
   <img src="documentation/10a customize content of health-live endpoint - code.png" alt="10a customize content of /health-live endpoint - code" title="10a customize content of /health-live endpoint - code" />
@@ -112,19 +112,19 @@ Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/290fa
 
 &nbsp;  
 &nbsp;  
-Customize the content and format of health check responses:
+:arrow_right: Customize the content and format of health check responses:
 - /health/ready endpoint:
 <p align="left">
   <img src="documentation/11a customize content of health-ready endpoint - code.png" alt="Customize content of /health/ready endpoint - code" title="Customize content of /health/ready endpoint - code" />
 </p>
 <p align="left">
-  <img src="documentation/11b customize content of health-ready endpoint - code.png.png" alt="Customize content of /health/ready endpoint - response" title="Customize content of /health/ready endpoint - response" />
+  <img src="documentation/11b customize content of health-ready endpoint.png" alt="Customize content of /health/ready endpoint - response" title="Customize content of /health/ready endpoint - response" />
 </p>
 Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/18a884e1f09f4dc5d2565724bd1d61e878d1a59d
 
 &nbsp;  
 &nbsp;  
-Add file path write health check using a class instance
+:arrow_right: Add file path write health check using a class instance
 - health check name: "File Path Health Check class"
 <p align="left">
   <img src="documentation/12a file path write check with class instance - code.png" alt="Add file path write check with class instance - code" title="Add file path write check with class instance - code" />
@@ -136,7 +136,7 @@ Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/5bce8
 
 &nbsp;  
 &nbsp;  
-Add file path write health check using the extension method AddFilePathWrite
+:arrow_right: Add file path write health check using the extension method AddFilePathWrite
 - health check name: "File Path Health Check extension"
 <p align="left">
   <img src="documentation/13a file path write check with extension method - code.png" alt="Add file path write check with extension method - code" title="Add file path write check with extension method - code" />
@@ -148,7 +148,7 @@ Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/332ab
 
 &nbsp;  
 &nbsp;  
-Add authorization policy to the health/ready endpoint, using the RequireAuthorization extension method (framework: Microsoft.AspNetCore.App, assembly: Microsoft.AspNetCore.Authorization.Policy). It uses OAuth2 authorization type with JSON Web Token authentication provided by IdentityServer.
+:arrow_right: Add authorization policy to the health/ready endpoint, using the RequireAuthorization extension method (framework: Microsoft.AspNetCore.App, assembly: Microsoft.AspNetCore.Authorization.Policy). It uses OAuth2 authorization type with JSON Web Token authentication provided by IdentityServer.
 - add authorization policy to health check endpoint:
 <p align="left">
   <img src="documentation/14a add authorization policy to health check endpoint.png" alt="Add authorization policy to health check endpoint" title="Add authorization policy to health check endpoint" />
@@ -176,7 +176,7 @@ Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/f70e7
 
 &nbsp;  
 &nbsp;  
-Add endpoint health checks as Controller action methods
+:arrow_right: Add endpoint health checks as Controller action methods
 - the /health/controller endpoint returns customized status values of the enum type HealhStatus (framework Microsoft.AspNetCore.App, assembly: Microsoft. AspNetCore.Diagnostics.HealthChecks.Abstractions), which represents the reported status of a health check result:
 <p align="left">
   <img src="documentation/15a customized HealthStatus values.png" alt="Customized HealthStatus values" title="Customized HealthStatus values" />
@@ -233,7 +233,7 @@ Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/20208
 
 &nbsp;  
 &nbsp;  
-Add endpoint health checks defined in extension method
+:arrow_right: Add endpoint health checks defined in extension method
 - The /health/extension endpoint returns the same health check results in the same format as the above health/controller endpoint, only the implementation is different. The MapEndpointHealthChecks extension method contains the /health/extension, /healthcheck, /health/ping and health/assembly endpoints:
 <p align="left">
   <img src="documentation/16a health check extension method.png" alt="Health check extension method" title="Health check extension method" />
@@ -247,7 +247,7 @@ Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/85297
 
 &nbsp;  
 &nbsp;  
-Add SQL server health checks defined in extension method
+:arrow_right: Add SQL server health checks defined in extension method
 - The health check in the AddSqlServerCheckThroughSqlCommand class uses SqlCommand to check the availability of the database server:
 <p align="left">
   <img src="documentation/17a SqlServerHealthCheckThroughSqlCommand class.png" alt="SqlServerHealthCheckThroughSqlCommand class" title="SqlServerHealthCheckThroughSqlCommand class" />
@@ -273,7 +273,7 @@ Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/e9571
 
 &nbsp;  
 &nbsp;  
-Add CORS policy to the health/live endpoint
+:arrow_right: Add CORS policy to the health/live endpoint
 - we specify origins (URLs) allowed to access this healtch check endpoint, using the RequireCors extension method (framework: Microsoft.AspNetCore.App, assembly: Microsoft.AspNetCore.Cors):
 <p align="left">
   <img src="documentation/18a add CORS policy to the health-live endpoint.png" alt="Add CORS policy to the health-live endpoint" title="Add CORS policy to the health-live endpoint" />
@@ -282,7 +282,7 @@ Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/6bf7b
 
 &nbsp;  
 &nbsp;  
-Add a health check User Interface at /healthchecks-ui endpoint
+:arrow_right: Add a health check User Interface at /healthchecks-ui endpoint
 In the InvestmentManager project,
 - add package AspNetCore.HealthChecks.UI (6.0.5) to display health check information in the browser,
 - add package AspNetCore.HealthChecks.UI.InMemory.Storage (6.0.5) to store health check results in memory, and
@@ -334,7 +334,7 @@ Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/6a7fc
 
 &nbsp;  
 &nbsp;  
-Limit the rate of calls made to the health/ready endpoint
+:arrow_right: Limit the rate of calls made to the health/ready endpoint
 - add package AspNetCoreRateLimit (5.0.0):
 <p align="left">
   <img src="documentation/20a add AspNetCoreRateLimit package.png" alt="Add AspNetCoreRateLimit package" title="Add AspNetCoreRateLimit package" />
@@ -363,7 +363,7 @@ Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/2ed61
 
 &nbsp;  
 &nbsp;  
-Add functionality to publish health check information
+:arrow_right: Add functionality to publish health check information
 - add package RabbitMQ.Client (5.1.1):
 <p align="left">
   <img src="documentation/21a add package RabbitMQ.Client.png" alt="Add package RabbitMQ.Client" title="Add package RabbitMQ.Client" />
@@ -378,6 +378,7 @@ Add functionality to publish health check information
 <p align="left">
   <img src="documentation/21c add RabbitMQQueueMessage class.png" alt="Add RabbitMQQueueMessage class" title="Add RabbitMQQueueMessage class" />
 </p>
+
 - add HealthCheckQueuePublisher class containing the publishing logic:
 <p align="left">
   <img src="documentation/21d add HealthCheckQueuePublisher class.png" alt="Add HealthCheckQueuePublisher class" title="Add HealthCheckQueuePublisher class" />
@@ -392,7 +393,7 @@ Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/91cd7
 
 &nbsp;  
 &nbsp;  
-Add HealthCheckAlerter project
+:arrow_right: Add HealthCheckAlerter project
 - add package Microsoft.Extensions.Hosting (6.0.1)
 - add package Newtonsoft.Json (13.0.3)
 - add package RabbitMQ.Client  (5.1.0)
@@ -430,7 +431,7 @@ Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/9e424
 
 &nbsp;  
 &nbsp;  
-Add database storage for health check information
+:arrow_right: Add database storage for health check information
 - add package AspNetCore.HealthChecks.UI.SqlServer.Storage (6.0.5) to the InvestmentManager project:
 <p align="left">
   <img src="documentation/23a add health check database storage to the project.png" alt="Add health check database storage to the project" title="Add health check database storage to the project" />
@@ -445,6 +446,7 @@ Add database storage for health check information
 <p align="left">
   <img src="documentation/23c add database storage for HealthChecksUI.png" alt="Add database storage for HealthChecksUI" title="Add database storage for HealthChecksUI" />
 </p>
+
 - as a result, the HealthChecks database is created and the current health check information will be stored there:
 <p align="left">
   <img src="documentation/23d HealthChecks database created.png" alt="HealthChecks database created" title="HealthChecks database created" />
@@ -456,7 +458,7 @@ Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/4def2
 
 &nbsp;  
 &nbsp;  
-Add build date information as a custom AssemblyAttribute
+:arrow_right: Add build date information as a custom AssemblyAttribute
 - define the custom attribute BuildDateAttribute with DateTime property and to retrieve its value, using the GetCustomAttribute extension method (defined in the System.Reflection.CustomAttributeExtension class):
 <p align="left">
   <img src="documentation/24a define BuildDateAttribute.png" alt="Define BuildDateAttribute" title="Define BuildDateAttribute" />
@@ -483,3 +485,15 @@ Add build date information as a custom AssemblyAttribute
 </p>
 Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/5b2f60b3bd6de7ad3834756fc93fe6d9b5aef487
 
+&nbsp;  
+&nbsp;  
+Refactor HealthCheckController methods
+- move CheckHealth method into CheckHealthService class
+- move VersionInfo method into CheckHealthService class
+- declare the above methods in the ICheckHealthService interface
+<p align="left">
+  <img src="documentation/25 declare methods in the ICheckHealthService interface.png" alt="Define BuildDateAttribute" title="Define BuildDateAttribute" />
+</p>
+
+- register the CheckHealthService as a transient service
+Code: https://github.com/sztrelcsikzoltan/application-health-checks/commit/291080e7ba4325f491dc28caa6ac48b2c248f174
